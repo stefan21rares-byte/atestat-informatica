@@ -65,3 +65,22 @@ if(formular) {
         }, 4000);
     });
 }
+
+const textTypewriter = "Din era abacului până la era inteligenței artificiale...";
+const containerTypewriter = document.getElementById('typewriter-container');
+let indexType = 0;
+
+function typeWriter() {
+    if (containerTypewriter && indexType < textTypewriter.length) {
+        if(indexType === 0) {
+            containerTypewriter.innerHTML = '<span id="tw-text"></span><span class="typewriter-cursor"></span>';
+        }
+        document.getElementById('tw-text').innerHTML += textTypewriter.charAt(indexType);
+        indexType++;
+        setTimeout(typeWriter, 50);
+    }
+}
+
+if(containerTypewriter) {
+    setTimeout(typeWriter, 500);
+}
