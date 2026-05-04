@@ -84,3 +84,25 @@ function typeWriter() {
 if(containerTypewriter) {
     setTimeout(typeWriter, 500);
 }
+const cursorDot = document.querySelector("[data-cursor-dot]");
+const cursorTrails = document.querySelectorAll("[data-cursor-trail]");
+
+if (cursorDot) {
+    window.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        cursorTrails.forEach((trail, index) => {
+            trail.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, {
+                duration: 100 + (index * 60),
+                fill: "forwards"
+            });
+        });
+    });
+}
